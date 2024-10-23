@@ -28,6 +28,32 @@ const App = () => {
     console.log("Wallet connected");
   };
 
+  const [isDragging, setIsDragging] = useState(false);
+  const [startY, setStartY] = useState(0);
+  const [scrollTop, setScrollTop] = useState(0);
+
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartY(e.pageY - e.currentTarget.offsetTop);
+    setScrollTop(e.currentTarget.scrollTop);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const y = e.pageY - e.currentTarget.offsetTop;
+    const walk = (y - startY) * 2; // Scroll-fast
+    e.currentTarget.scrollTop = scrollTop - walk;
+  };
+
   return (
     <Router>
       <div className="container">
@@ -45,7 +71,13 @@ const App = () => {
                 <motion.div {...pageTransition}>
                   <div className="offers-section">
                     <h1 className="heading">Select a Premium Offer</h1>
-                    <div className="offers">
+                    <div 
+                      className="offers"
+                      onMouseDown={handleMouseDown}
+                      onMouseLeave={handleMouseLeave}
+                      onMouseUp={handleMouseUp}
+                      onMouseMove={handleMouseMove}
+                    >
                       {offers.map((offer, index) => (
                         <Link key={index} to={`/payment/${offer.currency}`} className="offer">
                           <div className="offer-card">
