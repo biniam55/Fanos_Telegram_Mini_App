@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import './App.css'; // Make sure to create this CSS file
 import PaymentPage from './PaymentPage'; // Import the PaymentPage component
 
 const App = () => {
+  const [connected, setConnected] = useState(false); // State to manage wallet connection
+  const username = "Username"; // Replace with dynamic username if needed
+
   const offers = [
     { title: 'Premium Offer 1', price: '10 TON', currency: 'TON' },
     { title: 'Premium Offer 2', price: '15 USDT', currency: 'USDT' },
@@ -18,10 +21,23 @@ const App = () => {
     transition: { duration: 0.5 },
   };
 
+  const handleWalletConnect = () => {
+    // Simulate wallet connection
+    setConnected(true);
+    console.log("Wallet connected");
+  };
+
   return (
     <Router>
       <div className="container">
-        <h2 className="username">Welcome, Username!</h2>
+        <h2 className="username">Welcome, {username}!</h2>
+        
+        {/* Wallet Connect Button */}
+        <button className="wallet-button" onClick={handleWalletConnect}>
+          Connect Wallet
+        </button>
+        {connected && <p className="wallet-status">Wallet Connected</p>}
+        
         <Routes>
           <Route
             path="/"
@@ -32,8 +48,10 @@ const App = () => {
                   <div className="offers">
                     {offers.map((offer, index) => (
                       <Link key={index} to={`/payment/${offer.currency}`} className="offer">
-                        <h3>{offer.title}</h3>
-                        <p>{offer.price}</p>
+                        <div className="offer-card">
+                          <h3>{offer.title}</h3>
+                          <p className="offer-price">{offer.price}</p>
+                        </div>
                       </Link>
                     ))}
                   </div>
