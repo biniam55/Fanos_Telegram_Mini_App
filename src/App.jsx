@@ -1,60 +1,57 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import './App.css'; // Make sure to create this CSS file
+import PaymentPage from './PaymentPage'; // Import the PaymentPage component
 
 const App = () => {
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const [selectedOffer, setSelectedOffer] = useState(null);
-
-  const handlePayment = (currency) => {
-    console.log(`Processing payment with ${currency} for ${selectedOffer.title}`);
-    setTimeout(() => {
-      setPaymentSuccess(true);
-      console.log(`Payment successful with ${currency}`);
-    }, 3000);
-  };
-
   const offers = [
-    { title: 'Premium Offer 1', price: '10 TON' },
-    { title: 'Premium Offer 2', price: '15 USDT' },
-    { title: 'Premium Offer 3', price: '20 TON' },
+    { title: 'Premium Offer 1', price: '10 TON', currency: 'TON' },
+    { title: 'Premium Offer 2', price: '15 USDT', currency: 'USDT' },
+    { title: 'Premium Offer 3', price: '20 TON', currency: 'TON' },
   ];
 
+  const pageTransition = {
+    initial: { opacity: 0, x: -100 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 100 },
+    transition: { duration: 0.5 },
+  };
+
   return (
-    <div className="container">
-      <h2 className="username">Welcome, Username!</h2>
-      {!paymentSuccess ? (
-        <div className="offers-section">
-          <h1 className="heading">Select a Premium Offer</h1>
-          <div className="offers">
-            {offers.map((offer, index) => (
-              <div key={index} className="offer" onClick={() => setSelectedOffer(offer)}>
-                <h3>{offer.title}</h3>
-                <p>{offer.price}</p>
-              </div>
-            ))}
-          </div>
-          {selectedOffer && (
-            <div className="payment-options">
-              <h2>Pay {selectedOffer.price} to join the private channel.</h2>
-              <button className="button ton" onClick={() => handlePayment('TON')}>
-                Pay with TON
-              </button>
-              <button className="button usdt" onClick={() => handlePayment('USDT')}>
-                Pay with USDT
-              </button>
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="confirmation-section">
-          <h1 className="heading">Payment Confirmed!</h1>
-          <p className="description">You can now join our private Telegram channel.</p>
-          <button className="button join" onClick={() => window.open('https://t.me/joinchat/your-private-channel', '_blank')}>
-            Join Private Channel
-          </button>
-        </div>
-      )}
-    </div>
+    <Router>
+      <div className="container">
+        <h2 className="username">Welcome, Username!</h2>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <motion.div {...pageTransition}>
+                <div className="offers-section">
+                  <h1 className="heading">Select a Premium Offer</h1>
+                  <div className="offers">
+                    {offers.map((offer, index) => (
+                      <Link key={index} to={`/payment/${offer.currency}`} className="offer">
+                        <h3>{offer.title}</h3>
+                        <p>{offer.price}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            }
+          />
+          <Route
+            path="/payment/:currency"
+            element={
+              <motion.div {...pageTransition}>
+                <PaymentPage />
+              </motion.div>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
