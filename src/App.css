@@ -1,18 +1,53 @@
-body {
-  background-color: #f5f5f5; /* Light gray background */
-  font-family: 'Arial', sans-serif; /* Clean font */
-  margin: 0;
-  padding: 0;
+/* App.css */
+html, body {
+  height: 100%; /* Full height for html and body */
+  margin: 0; /* Remove default margin */
+  background-color: black; /* Set background color to black */
+  color: white; /* Set default text color to white */
+  font-family: 'Arial', sans-serif; /* Set a clean font */
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack elements vertically */
+  min-height: 100vh; /* Ensure container takes full height */
+  padding-bottom: 80px; /* Space for footer height */
+}
+
+.main-content {
+  flex: 1; /* Allow main content to take available space */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  padding: 20px; /* Add padding for better spacing */
+}
+
+.footer {
+  background-color: #333; /* Dark background */
+  color: white; /* White text */
+  text-align: center;
+  padding: 20px 0; /* Padding for top and bottom */
+  position: fixed; /* Fix the footer to the bottom */
+  bottom: 0; /* Position at the bottom */
+  width: 100%; /* Full width */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Optional shadow for separation */
+}
+
+.footer-icons {
+  display: flex; /* Use flexbox for icons */
+  justify-content: space-around; /* Space out icons evenly */
+  align-items: center; /* Center icons vertically */
+}
+
+.footer-icon {
+  color: white; /* Icon color */
+  text-decoration: none; /* Remove underline */
+}
+
+.footer-icon:hover {
+  color: #aaa; /* Change color on hover */
 }
 
 .username {
-  color: #333; /* Dark gray text */
+  color: white; /* White text for username */
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
@@ -47,7 +82,7 @@ body {
 
 .heading {
   font-size: 28px;
-  color: #333;
+  color: white; /* White for better visibility */
   margin-bottom: 20px;
 }
 
@@ -63,7 +98,7 @@ body {
 }
 
 .offer-card {
-  background-color: white;
+  background-color: #444; /* Dark card background */
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -83,6 +118,7 @@ body {
   margin-top: 10px;
   color: #007bff; /* Blue for price */
 }
+
 .payment-options {
   text-align: center;
   margin-top: 20px;
@@ -90,7 +126,7 @@ body {
 
 .price {
   font-size: 24px;
-  color: #333; /* Dark gray for better readability */
+  color: white; /* White for better visibility */
   margin: 10px 0;
 }
 
@@ -133,6 +169,6 @@ body {
 
 .description {
   font-size: 18px;
-  color: #666; /* Gray for description */
+  color: #ccc; /* Light gray for description */
   margin: 10px 0;
 }
