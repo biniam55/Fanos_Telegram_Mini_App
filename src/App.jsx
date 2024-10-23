@@ -3,31 +3,39 @@ import './App.css'; // Make sure to create this CSS file
 
 const App = () => {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState('');
-  const [amount, setAmount] = useState(0);
-  const [showPaymentOptions, setShowPaymentOptions] = useState(false); // New state to manage showing payment options
+  const [selectedOffer, setSelectedOffer] = useState(null);
 
   const handlePayment = (currency) => {
-    const paymentAmount = currency === 'TON' ? 10 : 5; // Example amounts
-    setSelectedCurrency(currency);
-    setAmount(paymentAmount);
-    console.log(`Processing payment with ${currency}`);
-    
+    console.log(`Processing payment with ${currency} for ${selectedOffer.title}`);
     setTimeout(() => {
       setPaymentSuccess(true);
       console.log(`Payment successful with ${currency}`);
     }, 3000);
   };
 
+  const offers = [
+    { title: 'Premium Offer 1', price: '10 TON' },
+    { title: 'Premium Offer 2', price: '15 USDT' },
+    { title: 'Premium Offer 3', price: '20 TON' },
+  ];
+
   return (
     <div className="container">
+      <h2 className="username">Welcome, Username!</h2>
       {!paymentSuccess ? (
-        showPaymentOptions ? ( // Conditional rendering based on payment options visibility
-          <div className="payment-section">
-            <h1 className="heading">Select Your Payment Method</h1>
-            <p className="description">Pay with TON or USDT to gain access.</p>
-
-            <div className="payment-buttons">
+        <div className="offers-section">
+          <h1 className="heading">Select a Premium Offer</h1>
+          <div className="offers">
+            {offers.map((offer, index) => (
+              <div key={index} className="offer" onClick={() => setSelectedOffer(offer)}>
+                <h3>{offer.title}</h3>
+                <p>{offer.price}</p>
+              </div>
+            ))}
+          </div>
+          {selectedOffer && (
+            <div className="payment-options">
+              <h2>Pay {selectedOffer.price} to join the private channel.</h2>
               <button className="button ton" onClick={() => handlePayment('TON')}>
                 Pay with TON
               </button>
@@ -35,25 +43,12 @@ const App = () => {
                 Pay with USDT
               </button>
             </div>
-          </div>
-        ) : (
-          <div className="description-section">
-            <h1 className="heading">Join Our Exclusive Telegram Community</h1>
-            <p className="description">
-              Unlock premium content and discussions by joining our private channel. 
-              Click the button below to proceed to payment!
-            </p>
-            <button className="button join" onClick={() => setShowPaymentOptions(true)}>
-              Join Our Private Channel
-            </button>
-          </div>
-        )
+          )}
+        </div>
       ) : (
         <div className="confirmation-section">
           <h1 className="heading">Payment Confirmed!</h1>
-          <p className="description">
-            You have successfully paid {amount} {selectedCurrency} to join our private Telegram channel.
-          </p>
+          <p className="description">You can now join our private Telegram channel.</p>
           <button className="button join" onClick={() => window.open('https://t.me/joinchat/your-private-channel', '_blank')}>
             Join Private Channel
           </button>
