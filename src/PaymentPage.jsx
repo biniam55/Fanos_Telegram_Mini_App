@@ -40,7 +40,7 @@ const PaymentPage = () => {
           <div className="confirmation-section">
             <h1 className="heading">Payment Confirmed!</h1>
             <p className="description">You can now join our private Telegram channel.</p>
-            <button className="button join" onClick={() => window.open('https://t.me/joinchat/your-private-channel', '_blank')}>
+            <button className="button join" onClick={() => window.open('https://t.me/+E7sExmwuLjpjZjRk', '_blank')}>
               Join Private Channel
             </button>
           </div>

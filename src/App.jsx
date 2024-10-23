@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; 
 import './App.css'; 
 import PaymentPage from './PaymentPage';
-import Footer from './Footer'; // Import your Footer component
-import UserProfile from './UserProfile'; // Import UserProfile component
+import Footer from './Footer'; 
+import UserProfile from './UserProfile'; 
 
 const App = () => {
   const [connected, setConnected] = useState(false);
@@ -50,14 +50,14 @@ const App = () => {
     if (!isDragging) return;
     e.preventDefault();
     const y = e.pageY - e.currentTarget.offsetTop;
-    const walk = (y - startY) * 2; // Scroll-fast
+    const walk = (y - startY) * 2; 
     e.currentTarget.scrollTop = scrollTop - walk;
   };
 
   return (
     <Router>
       <div className="container">
-        <UserProfile username={username} /> {/* Render the UserProfile here */}
+        <UserProfile username={username} /> 
         <button className="wallet-button" onClick={handleWalletConnect}>
           Connect Wallet
         </button>
@@ -79,12 +79,14 @@ const App = () => {
                       onMouseMove={handleMouseMove}
                     >
                       {offers.map((offer, index) => (
-                        <Link key={index} to={`/payment/${offer.currency}`} className="offer">
-                          <div className="offer-card">
-                            <h3>{offer.title}</h3>
-                            <p className="offer-price">{offer.price}</p>
-                          </div>
-                        </Link>
+                        <div key={index} className="offer-card">
+                          <h3>{offer.title}</h3>
+                          <p className="offer-price">{offer.price}</p>
+                          {/* Button to redirect to payment */}
+                          <Link to={`/payment/${offer.currency}`} className="offer-button-link">
+                            <button className="button pay-button">Proceed to Payment</button>
+                          </Link>
+                        </div>
                       ))}
                     </div>
                   </div>

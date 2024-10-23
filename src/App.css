@@ -76,8 +76,6 @@ html, body {
   font-weight: bold;
 }
 
-/* App.css */
-
 .offers-section {
   display: flex; /* Use flex to align items */
   flex-direction: column; /* Align items vertically */
@@ -98,6 +96,7 @@ html, body {
   display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
 }
 
+/* Update for offer cards */
 .offer-card {
   background-color: #444; /* Card background */
   color: white; /* Text color */
@@ -105,13 +104,20 @@ html, body {
   padding: 40px; /* Increased padding */
   margin: 10px 0; /* Margin between cards */
   text-align: center; /* Center the text */
-  transition: transform 0.3s; /* Animation for hover effect */
+  transition: transform 0.3s, box-shadow 0.3s; /* Animation for hover effect */
   min-height: 200px; /* Minimum height for cards */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  cursor: pointer; /* Indicate that the card is clickable */
 }
 
 .offer-card:hover {
   transform: scale(1.05); /* Scale up on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.offer-card:active {
+  transform: scale(0.98); /* Slight scale down on click */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Reduced shadow on click */
 }
 
 .offer-price {
@@ -119,7 +125,6 @@ html, body {
   font-weight: bold; /* Bold text */
   margin-top: 10px; /* Margin on top */
 }
-
 
 .payment-options {
   text-align: center;
