@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { motion } from 'framer-motion'; // Import motion from Framer Motion
+import { motion } from 'framer-motion'; 
 import './App.css'; // Ensure you have the same CSS for styling
 
 const PaymentPage = () => {
@@ -28,7 +28,7 @@ const PaymentPage = () => {
         {!paymentSuccess ? (
           <div className="payment-options">
             <h1 className="heading">Pay to Join the Private Channel</h1>
-            <h2>Price: {currency === 'TON' ? '10 TON' : '15 USDT'}</h2>
+            <h2 className="price">Price: {currency === 'TON' ? '10 TON' : '15 USDT'}</h2>
             <button className="button ton" onClick={handlePayment}>
               Pay with TON
             </button>

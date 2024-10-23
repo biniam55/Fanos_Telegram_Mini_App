@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { motion } from 'framer-motion'; // Import motion from Framer Motion
-import './App.css'; // Make sure to create this CSS file
-import PaymentPage from './PaymentPage'; // Import the PaymentPage component
+import { motion } from 'framer-motion';
+import './App.css'; 
+import PaymentPage from './PaymentPage'; 
 
 const App = () => {
-  const [connected, setConnected] = useState(false); // State to manage wallet connection
-  const username = "Username"; // Replace with dynamic username if needed
+  const [connected, setConnected] = useState(false); 
+  const username = "Username"; 
 
   const offers = [
     { title: 'Premium Offer 1', price: '10 TON', currency: 'TON' },
@@ -22,7 +22,6 @@ const App = () => {
   };
 
   const handleWalletConnect = () => {
-    // Simulate wallet connection
     setConnected(true);
     console.log("Wallet connected");
   };
@@ -32,7 +31,6 @@ const App = () => {
       <div className="container">
         <h2 className="username">Welcome, {username}!</h2>
         
-        {/* Wallet Connect Button */}
         <button className="wallet-button" onClick={handleWalletConnect}>
           Connect Wallet
         </button>

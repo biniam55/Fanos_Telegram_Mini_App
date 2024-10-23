@@ -1,122 +1,138 @@
+body {
+  background-color: #f5f5f5; /* Light gray background */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  margin: 0;
+  padding: 0;
+}
+
 .container {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  text-align: center;
 }
 
 .username {
+  color: #333; /* Dark gray text */
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .wallet-button {
-  padding: 10px 20px;
-  background-color: #4CAF50; /* Green color */
+  background-color: #007bff; /* Primary blue */
   color: white;
   border: none;
   border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
-  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto 20px; /* Centered */
+  transition: background-color 0.3s;
 }
 
 .wallet-button:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .wallet-status {
-  margin: 10px 0;
-  font-size: 16px;
-  color: #4CAF50; /* Match with wallet button */
+  text-align: center;
+  color: #28a745; /* Green for success */
+  font-weight: bold;
 }
 
 .offers-section {
-  margin-top: 20px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .offers {
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px; /* Space between offer cards */
 }
 
 .offer {
-  text-decoration: none; /* Remove underline from links */
+  text-decoration: none;
+  color: inherit; /* Inherit text color */
 }
 
 .offer-card {
-  background-color: #ffffff; /* White background */
-  border: 1px solid #ddd; /* Light gray border */
-  border-radius: 10px; /* Rounded corners */
+  background-color: white;
+  border-radius: 10px;
   padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  width: 200px;
+  margin: 10px;
   text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition */
-  width: 200px; /* Fixed width */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .offer-card:hover {
   transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
 }
 
 .offer-price {
-  font-size: 18px;
-  color: #333; /* Dark text color */
-  margin-top: 10px; /* Space above price */
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #007bff; /* Blue for price */
 }
-
-
 .payment-options {
+  text-align: center;
   margin-top: 20px;
 }
 
+.price {
+  font-size: 24px;
+  color: #333; /* Dark gray for better readability */
+  margin: 10px 0;
+}
+
 .button {
-  background-color: #4CAF50; /* Green */
-  border: none;
+  background-color: #007bff; /* Blue color for buttons */
   color: white;
-  padding: 15px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  border: none;
   border-radius: 5px;
+  padding: 12px 20px; /* Padding for a more substantial button */
   cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.button.ton {
-  background-color: #1E90FF; /* Dodger Blue */
-}
-
-.button.usdt {
-  background-color: #FFD700; /* Gold */
+  font-size: 16px;
+  margin: 10px; /* Margin around buttons */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
 }
 
 .button:hover {
-  background-color: #45a049;
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.button.ton {
+  background-color: #28a745; /* Green for TON */
+}
+
+.button.ton:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.button.usdt {
+  background-color: #ffc107; /* Yellow for USDT */
+}
+
+.button.usdt:hover {
+  background-color: #e0a800; /* Darker yellow on hover */
 }
 
 .confirmation-section {
+  text-align: center;
   margin-top: 20px;
 }
 
 .description {
+  font-size: 18px;
+  color: #666; /* Gray for description */
   margin: 10px 0;
-}
-.wallet-button {
-  background-color: #4CAF50; /* Green */
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 10px 0;
-}
-
-.wallet-status {
-  color: #4CAF50;
-  margin: 10px 0;
-  font-weight: bold;
 }
