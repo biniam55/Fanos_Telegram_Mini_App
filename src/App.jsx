@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; 
 import './App.css'; 
@@ -8,7 +8,7 @@ import UserProfile from './UserProfile';
 
 const App = () => {
   const [connected, setConnected] = useState(false);
-  const username = "Username"; 
+  const [username, setUsername] = useState("Guest"); // Default username
 
   const offers = [
     { title: 'Premium Offer 1', price: '10 TON', currency: 'TON' },
@@ -23,6 +23,7 @@ const App = () => {
     transition: { duration: 0.5 },
   };
 
+  // Function to handle wallet connection
   const handleWalletConnect = () => {
     setConnected(true);
     console.log("Wallet connected");
@@ -32,6 +33,7 @@ const App = () => {
   const [startY, setStartY] = useState(0);
   const [scrollTop, setScrollTop] = useState(0);
 
+  // Mouse drag handlers for custom scrolling
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartY(e.pageY - e.currentTarget.offsetTop);
@@ -53,6 +55,15 @@ const App = () => {
     const walk = (y - startY) * 2; 
     e.currentTarget.scrollTop = scrollTop - walk;
   };
+
+  // Fetch Telegram username when the app loads
+  useEffect(() => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      const tg = window.Telegram.WebApp;
+      const telegramUsername = tg.initDataUnsafe?.user?.username || "Guest";
+      setUsername(telegramUsername);
+    }
+  }, []);
 
   return (
     <Router>
