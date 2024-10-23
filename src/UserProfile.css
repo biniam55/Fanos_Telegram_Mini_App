@@ -1,25 +1,35 @@
-/* UserProfile.css */
 .user-profile {
-    text-align: center; /* Center align text */
-    margin: 20px 0; /* Space around the profile */
-}
-
-.user-photo {
-    width: 100px; /* Set width for circular photo */
-    height: 100px; /* Set height for circular photo */
-    border-radius: 50%; /* Make the photo circular */
-    object-fit: cover; /* Cover the photo properly */
-    border: 2px solid white; /* Optional: white border */
-}
-
-.welcome-message {
-    color: white; /* White text for visibility */
-    font-size: 24px; /* Font size for welcome message */
-    margin-top: 10px; /* Space between photo and message */
-}
-.profile-picture {
-    border-radius: 50%; /* Make the image circular */
-    width: 50px; /* Set a fixed size */
-    height: 50px; /* Set a fixed size */
-    margin-right: 10px; /* Space between the image and username */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px; /* Add space at the top */
   }
+  
+  .profile-picture {
+    width: 80px; /* Reduced size */
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .fallback-avatar {
+    width: 80px; /* Reduced size */
+    height: 80px;
+    border-radius: 50%;
+    background-color: #007bff; /* Fallback avatar background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 28px; /* Adjusted font size */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .welcome-message {
+    font-size: 20px; /* Reduced font size */
+    font-weight: 600;
+    text-align: center; /* Center align the text */
+  }
+  
