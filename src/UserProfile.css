@@ -17,3 +17,9 @@
     font-size: 24px; /* Font size for welcome message */
     margin-top: 10px; /* Space between photo and message */
 }
+.profile-picture {
+    border-radius: 50%; /* Make the image circular */
+    width: 50px; /* Set a fixed size */
+    height: 50px; /* Set a fixed size */
+    margin-right: 10px; /* Space between the image and username */
+  }

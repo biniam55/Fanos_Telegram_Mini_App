@@ -9,6 +9,7 @@ import UserProfile from './UserProfile';
 const App = () => {
   const [connected, setConnected] = useState(false);
   const [username, setUsername] = useState("Guest"); // Default username
+  const [photoUrl, setPhotoUrl] = useState(""); // State for profile picture
 
   const offers = [
     { title: 'Premium Offer 1', price: '10 TON', currency: 'TON' },
@@ -23,7 +24,6 @@ const App = () => {
     transition: { duration: 0.5 },
   };
 
-  // Function to handle wallet connection
   const handleWalletConnect = () => {
     setConnected(true);
     console.log("Wallet connected");
@@ -33,7 +33,6 @@ const App = () => {
   const [startY, setStartY] = useState(0);
   const [scrollTop, setScrollTop] = useState(0);
 
-  // Mouse drag handlers for custom scrolling
   const handleMouseDown = (e) => {
     setIsDragging(true);
     setStartY(e.pageY - e.currentTarget.offsetTop);
@@ -56,19 +55,21 @@ const App = () => {
     e.currentTarget.scrollTop = scrollTop - walk;
   };
 
-  // Fetch Telegram username when the app loads
+  // Fetch Telegram username and photo URL when the app loads
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       const telegramUsername = tg.initDataUnsafe?.user?.username || "Guest";
+      const telegramPhotoUrl = tg.initDataUnsafe?.user?.photo_url || ""; // Get photo URL
       setUsername(telegramUsername);
+      setPhotoUrl(telegramPhotoUrl); // Set photo URL
     }
   }, []);
 
   return (
     <Router>
       <div className="container">
-        <UserProfile username={username} /> 
+        <UserProfile username={username} photoUrl={photoUrl} /> {/* Pass photoUrl to UserProfile */}
         <button className="wallet-button" onClick={handleWalletConnect}>
           Connect Wallet
         </button>
@@ -93,7 +94,6 @@ const App = () => {
                         <div key={index} className="offer-card">
                           <h3>{offer.title}</h3>
                           <p className="offer-price">{offer.price}</p>
-                          {/* Button to redirect to payment */}
                           <Link to={`/payment/${offer.currency}`} className="offer-button-link">
                             <button className="button pay-button">Proceed to Payment</button>
                           </Link>

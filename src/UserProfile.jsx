@@ -2,14 +2,10 @@
 import React from 'react';
 import './UserProfile.css'; // Import the CSS file for styling
 
-const UserProfile = ({ username }) => {
+const UserProfile = ({ username, photoUrl }) => {
   return (
     <div className="user-profile">
-      <img 
-        src="https://via.placeholder.com/100" // Replace with your user's photo URL
-        alt="User"
-        className="user-photo"
-      />
+      {photoUrl && <img src={photoUrl} alt={`${username}'s profile`} className="profile-picture" />} {/* Display profile picture */}
       <h2 className="welcome-message">Welcome, {username}!</h2>
     </div>
   );
