@@ -80,7 +80,11 @@ html, body {
   display: flex; /* Use flex to align items */
   flex-direction: column; /* Align items vertically */
   align-items: center; /* Center items horizontally */
-  margin: 20px 0; /* Add margin for spacing */
+ 
+}
+.offers-section h1 {
+  
+  font-size: 24px;
 }
 
 .offers {
