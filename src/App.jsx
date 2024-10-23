@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css'; // Make sure to create this CSS file
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+  const handlePayment = (currency) => {
+    console.log(`Processing payment with ${currency}`);
+    setTimeout(() => {
+      setPaymentSuccess(true);
+      console.log(`Payment successful with ${currency}`);
+    }, 3000);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="container">
+      {!paymentSuccess ? (
+        <div className="payment-section">
+          <h1 className="heading">Join Our Private Telegram Channel</h1>
+          <p className="description">Pay with TON or USDT to gain access.</p>
 
-export default App
+          <button className="button ton" onClick={() => handlePayment('TON')}>
+            Pay with TON
+          </button>
+          <button className="button usdt" onClick={() => handlePayment('USDT')}>
+            Pay with USDT
+          </button>
+        </div>
+      ) : (
+        <div className="confirmation-section">
+          <h1 className="heading">Payment Confirmed!</h1>
+          <p className="description">You can now join our private Telegram channel.</p>
+          <button className="button join" onClick={() => window.open('https://t.me/joinchat/your-private-channel', '_blank')}>
+            Join Private Channel
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
