@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { motion } from 'framer-motion'; 
-import './App.css'; 
-import PaymentPage from './PaymentPage';
-import Footer from './Footer'; 
-import UserProfile from './UserProfile'; 
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import "./App.css";
+import PaymentPage from "./PaymentPage";
+import Footer from "./Footer";
+import UserProfile from "./UserProfile";
 
 const App = () => {
   const [connected, setConnected] = useState(false);
@@ -12,9 +12,9 @@ const App = () => {
   const [photoUrl, setPhotoUrl] = useState(""); // State for profile picture
 
   const offers = [
-    { title: 'Premium Offer 1', price: '10 TON', currency: 'TON' },
-    { title: 'Premium Offer 2', price: '15 USDT', currency: 'USDT' },
-    { title: 'Premium Offer 3', price: '20 TON', currency: 'TON' },
+    { title: "Premium Offer 1", price: "10", currency: "USDT" },
+    { title: "Premium Offer 2", price: "15", currency: "USDT" },
+    { title: "Premium Offer 3", price: "20", currency: "USDT" },
   ];
 
   const pageTransition = {
@@ -51,7 +51,7 @@ const App = () => {
     if (!isDragging) return;
     e.preventDefault();
     const y = e.pageY - e.currentTarget.offsetTop;
-    const walk = (y - startY) * 2; 
+    const walk = (y - startY) * 2;
     e.currentTarget.scrollTop = scrollTop - walk;
   };
 
@@ -69,12 +69,12 @@ const App = () => {
   return (
     <Router>
       <div className="container">
-        <UserProfile username={username} photoUrl={photoUrl} /> {/* Pass photoUrl to UserProfile */}
+        <UserProfile username={username} photoUrl={photoUrl} />{" "}
+        {/* Pass photoUrl to UserProfile */}
         <button className="wallet-button" onClick={handleWalletConnect}>
           Connect Wallet
         </button>
-        {connected && <p className="wallet-status">Wallet Connected</p>}
-        
+        {/* {connected && <p className="wallet-status">Wallet Connected</p>} */}
         <div className="main-content">
           <Routes>
             <Route
@@ -83,7 +83,7 @@ const App = () => {
                 <motion.div {...pageTransition}>
                   <div className="offers-section">
                     <h1 className="heading">Select a Premium Offer</h1>
-                    <div 
+                    <div
                       className="offers"
                       onMouseDown={handleMouseDown}
                       onMouseLeave={handleMouseLeave}
@@ -93,9 +93,14 @@ const App = () => {
                       {offers.map((offer, index) => (
                         <div key={index} className="offer-card">
                           <h3>{offer.title}</h3>
-                          <p className="offer-price">{offer.price}</p>
-                          <Link to={`/payment/${offer.currency}`} className="offer-button-link">
-                            <button className="button pay-button">Proceed to Payment</button>
+                          <p className="offer-price">{offer.price} {offer.currency}</p>
+                          <Link
+                            to={`/payment/${offer.currency}/${offer.price}`}
+                            className="offer-button-link"
+                          >
+                            <button className="button pay-button">
+                              Proceed to Payment
+                            </button>
                           </Link>
                         </div>
                       ))}
@@ -105,7 +110,7 @@ const App = () => {
               }
             />
             <Route
-              path="/payment/:currency"
+              path="/payment/:currency/:price"
               element={
                 <motion.div {...pageTransition}>
                   <PaymentPage />
@@ -114,7 +119,6 @@ const App = () => {
             />
           </Routes>
         </div>
-        
         <Footer />
       </div>
     </Router>
